@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Xtally Documents – Editor dokumentů zdarma online (PWA, šablony, offline, Word)</title>
-<meta name="description" content="Xtally Documents je jednoduchý editor dokumentů přímo v prohlížeči. Zdarma, bez registrace, funguje i offline. Šablony na životopis, fakturu, smlouvu i dopis, import a export .docx pro Microsoft Word, export do PDF a textu. Vše zůstává jen ve vašem zařízení.">
+<title>Xtally Dokumenty – Editor dokumentů zdarma online (PWA, šablony, offline, Word)</title>
+<meta name="description" content="Xtally Dokumenty je jednoduchý editor dokumentů přímo v prohlížeči. Zdarma, bez registrace, funguje i offline. Šablony na životopis, fakturu, smlouvu i dopis, import a export .docx pro Microsoft Word, export do PDF a textu. Vše zůstává jen ve vašem zařízení.">
 <meta name="keywords" content="editor dokumentů, online dokumenty zdarma, šablona životopisu, šablona faktury, psaní dokumentů offline, PWA aplikace, jednoduchý textový editor, export do PDF, import Word dokumentu, export docx">
 <meta name="author" content="SYNTHLUCIDA">
 <meta name="robots" content="index, follow">
@@ -20,22 +20,22 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Xtally Documents">
+<meta name="apple-mobile-web-app-title" content="Xtally Dokumenty">
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16.png">
 
 <!-- Open Graph / Twitter -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Xtally Documents">
+<meta property="og:site_name" content="Xtally Dokumenty">
 <meta property="og:locale" content="cs_CZ">
 <meta property="og:locale:alternate" content="en_US">
-<meta property="og:title" content="Xtally Documents – Editor dokumentů zdarma online">
+<meta property="og:title" content="Xtally Dokumenty – Editor dokumentů zdarma online">
 <meta property="og:description" content="Napište životopis, fakturu, smlouvu nebo dopis přímo v prohlížeči. Import a export Wordu, zdarma, bez registrace, funguje i offline.">
 <meta property="og:image" content="https://webzen2026.github.io/xtally/icons/og-image.png">
 <meta property="og:url" content="https://webzen2026.github.io/xtally/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Xtally Documents – Editor dokumentů zdarma online">
+<meta name="twitter:title" content="Xtally Dokumenty – Editor dokumentů zdarma online">
 <meta name="twitter:description" content="Napište životopis, fakturu, smlouvu nebo dopis přímo v prohlížeči. Import a export Wordu, zdarma, bez registrace, funguje i offline.">
 <meta name="twitter:image" content="https://webzen2026.github.io/xtally/icons/og-image.png">
 
@@ -44,7 +44,7 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Xtally Documents",
+  "name": "Xtally Dokumenty",
   "alternateName": "Xtally",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web, Windows, macOS, Android, iOS",
@@ -289,7 +289,7 @@
   <div class="wrap header-inner">
     <a href="./" class="brand">
       <span class="mark"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 4v16M9 4v16M13 4v16M4 15l14-9" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>
-      <span>Xtally <span style="font-weight:600;opacity:.7;font-size:.85em;">Documents</span></span>
+      <span>Xtally <span style="font-weight:600;opacity:.7;font-size:.85em;" data-i18n="brandWord">Dokumenty</span></span>
     </a>
     <div class="header-actions">
       <a class="synth-link" href="https://synthlucida.com" target="_blank" rel="noopener" data-i18n="synthLink">Součást SYNTHLUCIDA ↗</a>
@@ -573,7 +573,7 @@
 
 <footer class="site">
   <div class="wrap footer-inner">
-    <p class="footer-note"><span data-i18n="footerNote">Xtally je součástí rodiny bezplatných webových nástrojů</span> <a href="https://synthlucida.com" target="_blank" rel="noopener">SYNTHLUCIDA</a>. © <span id="year"></span> Xtally Documents.</p>
+    <p class="footer-note"><span data-i18n="footerNote">Xtally je součástí rodiny bezplatných webových nástrojů</span> <a href="https://synthlucida.com" target="_blank" rel="noopener">SYNTHLUCIDA</a>. © <span id="year"></span> Xtally <span data-i18n="brandWord">Dokumenty</span>.</p>
     <div class="footer-links">
       <a href="https://synthlucida.com" target="_blank" rel="noopener">SYNTHLUCIDA</a>
       <a href="#app" data-i18n="footerEditor">Editor</a>
@@ -715,6 +715,7 @@
   /* ============ i18n ============ */
   var I18N = {
     cs: {
+      brandWord:"Dokumenty", pageTitle:"Xtally Dokumenty – Editor dokumentů zdarma online (PWA, šablony, offline, Word)",
       skipLink:"Přeskočit na editor", synthLink:"Součást SYNTHLUCIDA ↗", themeToggle:"Přepnout vzhled", installBtn:"Nainstalovat appku",
       privacyBadge:"Nic se neodesílá na server – vše zůstává jen ve vašem zařízení",
       heroTitle:"Napište dokument, aniž byste <span>cokoliv instalovali</span>",
@@ -787,6 +788,7 @@
       wordsZero:"0 slov", word1:" slovo", word234:" slova", word5:" slov"
     },
     en: {
+      brandWord:"Documents", pageTitle:"Xtally Documents – Free Online Document Editor (PWA, Templates, Offline, Word)",
       skipLink:"Skip to editor", synthLink:"Part of SYNTHLUCIDA ↗", themeToggle:"Toggle appearance", installBtn:"Install app",
       privacyBadge:"Nothing is uploaded to any server – everything stays on your device",
       heroTitle:"Write a document without <span>installing anything</span>",
@@ -875,6 +877,7 @@
 
   function applyI18n(){
     document.documentElement.lang = currentLang;
+    document.title = t("pageTitle");
     document.querySelectorAll("[data-i18n]").forEach(function(el){ el.textContent = t(el.getAttribute("data-i18n")); });
     document.querySelectorAll("[data-i18n-html]").forEach(function(el){ el.innerHTML = t(el.getAttribute("data-i18n-html")); });
     document.querySelectorAll("[data-i18n-title]").forEach(function(el){ el.title = t(el.getAttribute("data-i18n-title")); });
