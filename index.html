@@ -121,7 +121,20 @@
   .btn-sm{ padding:7px 13px; font-size:.82rem; }
   .btn svg{ width:16px; height:16px; }
 
-  .hero{ padding-block:52px 36px; text-align:center; }
+  .hero{ padding-block:14px 10px; text-align:center; }
+  .hero-details{ text-align:center; }
+  .hero-details summary{ list-style:none; cursor:pointer; }
+  .hero-details summary::-webkit-details-marker{ display:none; }
+  .hero-summary-row{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; padding-block:6px; }
+  .hero-toggle-hint{ display:inline-flex; align-items:center; gap:5px; font-size:.78rem; font-weight:600; color:var(--ink-soft); border:1px solid var(--line); padding:6px 12px; border-radius:999px; }
+  .hero-toggle-hint svg{ width:13px; height:13px; transition:transform .18s ease; }
+  .hero-details[open] .hero-toggle-hint svg{ transform:rotate(180deg); }
+  .hero-body{ padding-top:18px; }
+  .hero-mini-title{ font-family:'Sora','Inter',sans-serif; font-weight:700; font-size:1rem; margin:0; }
+  .relax-link{ display:flex; align-items:center; gap:7px; font-size:.8rem; font-weight:600; color:var(--ink-soft); text-decoration:none; padding:8px 2px 2px; margin-top:4px; border-top:1px solid var(--line); min-width:0; }
+  .relax-link:hover{ color:var(--accent); }
+  .relax-link svg{ width:15px; height:15px; flex-shrink:0; color:var(--accent); }
+  .relax-link span{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .privacy-badge{ display:inline-flex; align-items:center; gap:8px; font-size:.82rem; font-weight:600; color:var(--success); background:color-mix(in srgb, var(--success) 12%, transparent); border:1px solid color-mix(in srgb, var(--success) 30%, transparent); padding:8px 16px; border-radius:999px; margin-bottom:18px; }
   .privacy-badge svg{ width:15px; height:15px; flex-shrink:0; }
   .hero h1{ font-size:clamp(1.9rem,4.4vw,3.1rem); line-height:1.1; margin:0 0 16px; letter-spacing:-.02em; }
@@ -155,8 +168,9 @@
   .doc-item .title{ font-weight:600; font-size:.9rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .doc-item .meta{ font-size:.74rem; color:var(--ink-soft); }
   .doc-empty{ padding:24px 16px; text-align:center; color:var(--ink-soft); font-size:.86rem; }
-  .sidebar-foot{ padding:12px 16px; border-top:1px solid var(--line); display:flex; gap:8px; }
-  .sidebar-foot .btn{ flex:1; }
+  .sidebar-foot{ padding:12px 16px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:8px; }
+  .sidebar-foot-row{ display:flex; gap:8px; }
+  .sidebar-foot-row .btn{ flex:1; min-width:0; }
 
   .editor-col{ display:flex; flex-direction:column; min-width:0; min-height:0; }
   .toolbar{ display:flex; flex-wrap:wrap; align-items:center; gap:4px; padding:10px 14px; border-bottom:1px solid var(--line); background:var(--toolbar-bg); position:sticky; top:0; z-index:5; }
@@ -222,6 +236,13 @@
   .section{ padding-block:64px; }
   .section h2{ font-size:clamp(1.4rem,2.6vw,1.9rem); margin:0 0 10px; text-align:center; }
   .section .sub{ text-align:center; color:var(--ink-soft); max-width:640px; margin:0 auto 36px; }
+  .section-details summary{ list-style:none; cursor:pointer; }
+  .section-details summary::-webkit-details-marker{ display:none; }
+  .section-summary-row{ display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
+  .section-toggle-hint{ display:inline-flex; align-items:center; gap:5px; font-size:.8rem; font-weight:600; color:var(--ink-soft); border:1px solid var(--line); padding:6px 12px; border-radius:999px; flex-shrink:0; }
+  .section-toggle-hint svg{ width:13px; height:13px; transition:transform .18s ease; }
+  .section-details[open] .section-toggle-hint svg{ transform:rotate(180deg); }
+  .section-body{ padding-top:20px; }
   .grid-3{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
   .info-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); }
   .info-card .ic{ width:38px; height:38px; border-radius:10px; background:color-mix(in srgb, var(--accent) 14%, transparent); display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
@@ -310,22 +331,35 @@
 
 <section class="hero">
   <div class="wrap">
-    <span class="privacy-badge">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span data-i18n="privacyBadge">Nic se neodesílá na server – vše zůstává jen ve vašem zařízení</span>
-    </span>
-    <h1 data-i18n-html="heroTitle">Napište dokument, aniž byste <span>cokoliv instalovali</span></h1>
-    <p class="lead" data-i18n="heroLead">Xtally je odlehčený editor dokumentů přímo v prohlížeči. Životopis, faktura, smlouva nebo obyčejný dopis – s hotovými šablonami je hotovo za pár minut. Umí i otevřít a uložit soubory Wordu (.docx).</p>
-    <div class="hero-cta">
-      <a href="#app" class="btn btn-primary" data-i18n="heroCtaStart">Začít psát zdarma</a>
-      <button class="btn btn-ghost" id="heroTemplatesBtn" type="button" data-i18n="heroCtaTemplates">Prohlédnout šablony</button>
-    </div>
-    <div class="feature-strip">
-      <span class="feature-chip"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="chipOffline">Funguje i offline</span></span>
-      <span class="feature-chip"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="chipAutosave">Automatické ukládání</span></span>
-      <span class="feature-chip"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="chipWord">Import a export Wordu (.docx)</span></span>
-      <span class="feature-chip"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="chipResponsive">Responzivní na mobilu i počítači</span></span>
-    </div>
+    <details class="hero-details" id="heroDetails">
+      <summary>
+        <div class="hero-summary-row">
+          <span class="privacy-badge" style="margin-bottom:0;">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="privacyBadge">Nic se neodesílá na server – vše zůstává jen ve vašem zařízení</span>
+          </span>
+          <p class="hero-mini-title" data-i18n="brandWord2">Xtally Dokumenty</p>
+          <span class="hero-toggle-hint">
+            <span id="heroToggleLabel" data-i18n="heroToggleMore">O aplikaci a šablony</span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </summary>
+      <div class="hero-body">
+        <h1 data-i18n-html="heroTitle">Napište dokument, aniž byste <span>cokoliv instalovali</span></h1>
+        <p class="lead" data-i18n="heroLead">Xtally je odlehčený editor dokumentů přímo v prohlížeči. Životopis, faktura, smlouva nebo obyčejný dopis – s hotovými šablonami je hotovo za pár minut. Umí i otevřít a uložit soubory Wordu (.docx).</p>
+        <div class="hero-cta">
+          <a href="#app" class="btn btn-primary" data-i18n="heroCtaStart">Začít psát zdarma</a>
+          <button class="btn btn-ghost" id="heroTemplatesBtn" type="button" data-i18n="heroCtaTemplates">Prohlédnout šablony</button>
+        </div>
+        <div class="feature-strip">
+          <span class="feature-chip"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="chipOffline">Funguje i offline</span></span>
+          <span class="feature-chip"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="chipAutosave">Automatické ukládání</span></span>
+          <span class="feature-chip"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="chipWord">Import a export Wordu (.docx)</span></span>
+          <span class="feature-chip"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="chipResponsive">Responzivní na mobilu i počítači</span></span>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -341,8 +375,14 @@
       </div>
       <ul class="doc-list" id="docList"></ul>
       <div class="sidebar-foot">
-        <button class="btn btn-ghost btn-sm" id="backupBtn" type="button" data-i18n="backupBtn" data-i18n-title="backupBtnTitle" title="Zálohovat vše">Zálohovat</button>
-        <button class="btn btn-ghost btn-sm" id="restoreBtn" type="button" data-i18n="restoreBtn" data-i18n-title="restoreBtnTitle" title="Obnovit ze zálohy">Obnovit</button>
+        <div class="sidebar-foot-row">
+          <button class="btn btn-ghost btn-sm" id="backupBtn" type="button" data-i18n="backupBtn" data-i18n-title="backupBtnTitle" title="Zálohovat vše">Zálohovat</button>
+          <button class="btn btn-ghost btn-sm" id="restoreBtn" type="button" data-i18n="restoreBtn" data-i18n-title="restoreBtnTitle" title="Obnovit ze zálohy">Obnovit</button>
+        </div>
+        <a class="relax-link" href="https://relaxplayer.eu" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.8"/></svg>
+          <span data-i18n="relaxLink">Klidná chillout hudba k psaní ↗</span>
+        </a>
       </div>
     </aside>
 
@@ -477,97 +517,145 @@
 
 <section class="section">
   <div class="wrap">
-    <h2 data-i18n="stepsTitle">Jak to funguje</h2>
-    <p class="sub" data-i18n="stepsSub">Čtyři kroky mezi vámi a hotovým dokumentem.</p>
-    <div class="steps">
-      <div class="step"><div class="num">1</div><h3 data-i18n="step1h">Vyberte šablonu</h3><p data-i18n="step1p">Nebo začněte s prázdným dokumentem – podle toho, co zrovna potřebujete.</p></div>
-      <div class="step"><div class="num">2</div><h3 data-i18n="step2h">Napište a naformátujte</h3><p data-i18n="step2p">Tučné písmo, nadpisy, seznamy, zarovnání a barvy – vše jako v běžném editoru.</p></div>
-      <div class="step"><div class="num">3</div><h3 data-i18n="step3h">Automaticky se uloží</h3><p data-i18n="step3p">Xtally ukládá vaši práci průběžně přímo do tohoto zařízení – nic neztratíte.</p></div>
-      <div class="step"><div class="num">4</div><h3 data-i18n="step4h">Exportujte nebo stáhněte</h3><p data-i18n="step4p">PDF, Word (.docx), čistý text nebo záloha všech dokumentů – vyberte si.</p></div>
-    </div>
+    <details class="section-details" id="stepsDetails">
+      <summary>
+        <div class="section-summary-row">
+          <h2 data-i18n="stepsTitle" style="margin:0;">Jak to funguje</h2>
+          <span class="section-toggle-hint">
+            <span id="stepsToggleLabel" data-i18n="stepsToggleMore">Zobrazit</span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </summary>
+      <div class="section-body">
+        <p class="sub" data-i18n="stepsSub">Čtyři kroky mezi vámi a hotovým dokumentem.</p>
+        <div class="steps">
+          <div class="step"><div class="num">1</div><h3 data-i18n="step1h">Vyberte šablonu</h3><p data-i18n="step1p">Nebo začněte s prázdným dokumentem – podle toho, co zrovna potřebujete.</p></div>
+          <div class="step"><div class="num">2</div><h3 data-i18n="step2h">Napište a naformátujte</h3><p data-i18n="step2p">Tučné písmo, nadpisy, seznamy, zarovnání a barvy – vše jako v běžném editoru.</p></div>
+          <div class="step"><div class="num">3</div><h3 data-i18n="step3h">Automaticky se uloží</h3><p data-i18n="step3p">Xtally ukládá vaši práci průběžně přímo do tohoto zařízení – nic neztratíte.</p></div>
+          <div class="step"><div class="num">4</div><h3 data-i18n="step4h">Exportujte nebo stáhněte</h3><p data-i18n="step4p">PDF, Word (.docx), čistý text nebo záloha všech dokumentů – vyberte si.</p></div>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
 <section class="section" style="padding-top:0;">
   <div class="wrap">
-    <h2 data-i18n="featuresTitle">Vše, co běžný člověk k dokumentům potřebuje</h2>
-    <p class="sub" data-i18n="featuresSub">Xtally cíleně nemá desítky funkcí navíc – jen to, co skutečně použijete.</p>
-    <div class="grid-3">
-      <div class="info-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <h3 data-i18n="feat1h">Kompletní formátování</h3>
-        <p data-i18n="feat1p">Tučné, kurzíva, podtržení, přeškrtnutí, nadpisy, velikosti a typ písma, barvy, zvýraznění i zarovnání do bloku.</p>
+    <details class="section-details" id="featuresDetails">
+      <summary>
+        <div class="section-summary-row">
+          <h2 data-i18n="featuresTitle" style="margin:0;">Vše, co běžný člověk k dokumentům potřebuje</h2>
+          <span class="section-toggle-hint">
+            <span id="featuresToggleLabel" data-i18n="featuresToggleMore">Zobrazit</span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </summary>
+      <div class="section-body">
+        <p class="sub" data-i18n="featuresSub">Xtally cíleně nemá desítky funkcí navíc – jen to, co skutečně použijete.</p>
+        <div class="grid-3">
+          <div class="info-card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <h3 data-i18n="feat1h">Kompletní formátování</h3>
+            <p data-i18n="feat1p">Tučné, kurzíva, podtržení, přeškrtnutí, nadpisy, velikosti a typ písma, barvy, zvýraznění i zarovnání do bloku.</p>
+          </div>
+          <div class="info-card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l5 5v13H7V3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+            <h3 data-i18n="feat2h">Hotové šablony</h3>
+            <p data-i18n="feat2p">Přes 15 šablon – životopis, faktura, nájemní smlouva, plná moc, výpověď a další – v češtině i angličtině.</p>
+          </div>
+          <div class="info-card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l5 5v13H7V3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v5h5M9 13h6M9 16h6" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+            <h3 data-i18n="feat3h">Import i export Wordu</h3>
+            <p data-i18n="feat3p">Otevřete existující .docx soubor z Microsoft Wordu, upravte ho a uložte zpět jako plnohodnotný .docx.</p>
+          </div>
+          <div class="info-card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3 data-i18n="feat4h">Export, jaký potřebujete</h3>
+            <p data-i18n="feat4p">PDF přes tisk, Word (.docx), čistý text nebo záloha všech dokumentů v jednom JSON souboru.</p>
+          </div>
+          <div class="info-card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.4" stroke="currentColor" stroke-width="2"/></svg></div>
+            <h3 data-i18n="feat5h">Data zůstávají u vás</h3>
+            <p data-i18n="feat5p">Dokumenty se ukládají jen ve vašem prohlížeči. Žádný účet, žádné nahrávání obsahu na cizí server.</p>
+          </div>
+          <div class="info-card">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="2"/><path d="M9 18h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <h3 data-i18n="feat6h">Responzivní a offline</h3>
+            <p data-i18n="feat6p">Funguje na počítači, tabletu i mobilu a jako nainstalovaná PWA appka i bez internetu.</p>
+          </div>
+        </div>
       </div>
-      <div class="info-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l5 5v13H7V3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
-        <h3 data-i18n="feat2h">Hotové šablony</h3>
-        <p data-i18n="feat2p">Přes 15 šablon – životopis, faktura, nájemní smlouva, plná moc, výpověď a další – v češtině i angličtině.</p>
-      </div>
-      <div class="info-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l5 5v13H7V3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3v5h5M9 13h6M9 16h6" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-        <h3 data-i18n="feat3h">Import i export Wordu</h3>
-        <p data-i18n="feat3p">Otevřete existující .docx soubor z Microsoft Wordu, upravte ho a uložte zpět jako plnohodnotný .docx.</p>
-      </div>
-      <div class="info-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3 data-i18n="feat4h">Export, jaký potřebujete</h3>
-        <p data-i18n="feat4p">PDF přes tisk, Word (.docx), čistý text nebo záloha všech dokumentů v jednom JSON souboru.</p>
-      </div>
-      <div class="info-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.4" stroke="currentColor" stroke-width="2"/></svg></div>
-        <h3 data-i18n="feat5h">Data zůstávají u vás</h3>
-        <p data-i18n="feat5p">Dokumenty se ukládají jen ve vašem prohlížeči. Žádný účet, žádné nahrávání obsahu na cizí server.</p>
-      </div>
-      <div class="info-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="2"/><path d="M9 18h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <h3 data-i18n="feat6h">Responzivní a offline</h3>
-        <p data-i18n="feat6p">Funguje na počítači, tabletu i mobilu a jako nainstalovaná PWA appka i bez internetu.</p>
-      </div>
-    </div>
+    </details>
   </div>
 </section>
 
 <section class="section" style="padding-top:0;">
   <div class="wrap">
-    <h2 data-i18n="privacyTitle">Soukromí a vaše data</h2>
-    <div class="privacy-panel">
-      <p style="margin:0;color:var(--ink-soft);" data-i18n="privacyIntro">Xtally nemá žádný server ani databázi. Všechno zpracování dokumentů probíhá výhradně ve vašem prohlížeči.</p>
-      <ul>
-        <li data-i18n="privacyLi1">Vaše dokumenty se ukládají jen lokálně (localStorage) na tomto zařízení a nikam se neodesílají.</li>
-        <li data-i18n="privacyLi2">Import a export Wordu (.docx) zpracovává přímo prohlížeč – z internetu se stáhne pouze kód knihovny, nikdy váš obsah.</li>
-        <li data-i18n="privacyLi3">Appka nepoužívá sledovací nástroje, cookies s reklamou ani analytiku třetích stran.</li>
-        <li data-i18n="privacyLi4">Protože data žijí jen ve vašem prohlížeči, doporučujeme si důležité dokumenty pravidelně zálohovat (tlačítko „Zálohovat“).</li>
-      </ul>
-      <p style="margin:16px 0 0;"><a href="./privacy.html" data-i18n="privacyFullLink">Přečíst kompletní zásady ochrany soukromí →</a></p>
-    </div>
+    <details class="section-details" id="privacyDetails">
+      <summary>
+        <div class="section-summary-row">
+          <h2 data-i18n="privacyTitle" style="margin:0;">Soukromí a vaše data</h2>
+          <span class="section-toggle-hint">
+            <span id="privacyToggleLabel" data-i18n="privacyToggleMore">Zobrazit</span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </summary>
+      <div class="section-body">
+        <div class="privacy-panel">
+          <p style="margin:0;color:var(--ink-soft);" data-i18n="privacyIntro">Xtally nemá žádný server ani databázi. Všechno zpracování dokumentů probíhá výhradně ve vašem prohlížeči.</p>
+          <ul>
+            <li data-i18n="privacyLi1">Vaše dokumenty se ukládají jen lokálně (localStorage) na tomto zařízení a nikam se neodesílají.</li>
+            <li data-i18n="privacyLi2">Import a export Wordu (.docx) zpracovává přímo prohlížeč – z internetu se stáhne pouze kód knihovny, nikdy váš obsah.</li>
+            <li data-i18n="privacyLi3">Appka nepoužívá sledovací nástroje, cookies s reklamou ani analytiku třetích stran.</li>
+            <li data-i18n="privacyLi4">Protože data žijí jen ve vašem prohlížeči, doporučujeme si důležité dokumenty pravidelně zálohovat (tlačítko „Zálohovat“).</li>
+          </ul>
+          <p style="margin:16px 0 0;"><a href="./privacy.html" data-i18n="privacyFullLink">Přečíst kompletní zásady ochrany soukromí →</a></p>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
 <section class="section" style="padding-top:0;">
   <div class="wrap">
-    <h2 data-i18n="faqTitle">Časté dotazy</h2>
-    <div class="faq">
-      <details class="faq-item" open>
-        <summary data-i18n="faq1q">Je Xtally opravdu zdarma?</summary>
-        <p data-i18n="faq1a">Ano. Xtally je volně dostupný nástroj bez registrace, předplatného nebo skrytých poplatků.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-i18n="faq2q">Kam se ukládají moje dokumenty?</summary>
-        <p data-i18n="faq2a">Přímo ve vašem prohlížeči (localStorage). Nikam se neodesílají – pokud vymažete data prohlížeče, dokumenty zmizí, proto si důležité soubory zálohujte nebo exportujte.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-i18n="faq3q">Otevře appka soubory z Wordu?</summary>
-        <p data-i18n="faq3a">Ano, přes tlačítko Import můžete nahrát existující .docx soubor a upravit ho. Export pak vytvoří skutečný .docx soubor, který Word otevře bez problémů.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-i18n="faq4q">Funguje appka i bez internetu?</summary>
-        <p data-i18n="faq4a">Po prvním načtení a nainstalování ano – Xtally je PWA (Progressive Web App) a hlavní obsah si ukládá do mezipaměti zařízení.</p>
-      </details>
-      <details class="faq-item">
-        <summary data-i18n="faq5q">Souvisí Xtally se SYNTHLUCIDA?</summary>
-        <p data-i18n="faq5a">Ano, je to samostatný projekt z rodiny bezplatných webových nástrojů <a href="https://synthlucida.com" target="_blank" rel="noopener">SYNTHLUCIDA</a>.</p>
-      </details>
-    </div>
+    <details class="section-details" id="faqDetails">
+      <summary>
+        <div class="section-summary-row">
+          <h2 data-i18n="faqTitle" style="margin:0;">Časté dotazy</h2>
+          <span class="section-toggle-hint">
+            <span id="faqToggleLabel" data-i18n="faqToggleMore">Zobrazit</span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </summary>
+      <div class="section-body">
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary data-i18n="faq1q">Je Xtally opravdu zdarma?</summary>
+            <p data-i18n="faq1a">Ano. Xtally je volně dostupný nástroj bez registrace, předplatného nebo skrytých poplatků.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq2q">Kam se ukládají moje dokumenty?</summary>
+            <p data-i18n="faq2a">Přímo ve vašem prohlížeči (localStorage). Nikam se neodesílají – pokud vymažete data prohlížeče, dokumenty zmizí, proto si důležité soubory zálohujte nebo exportujte.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq3q">Otevře appka soubory z Wordu?</summary>
+            <p data-i18n="faq3a">Ano, přes tlačítko Import můžete nahrát existující .docx soubor a upravit ho. Export pak vytvoří skutečný .docx soubor, který Word otevře bez problémů.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq4q">Funguje appka i bez internetu?</summary>
+            <p data-i18n="faq4a">Po prvním načtení a nainstalování ano – Xtally je PWA (Progressive Web App) a hlavní obsah si ukládá do mezipaměti zařízení.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq5q">Souvisí Xtally se SYNTHLUCIDA?</summary>
+            <p data-i18n="faq5a">Ano, je to samostatný projekt z rodiny bezplatných webových nástrojů <a href="https://synthlucida.com" target="_blank" rel="noopener">SYNTHLUCIDA</a>.</p>
+          </details>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -722,6 +810,12 @@
       heroTitle:"Napište dokument, aniž byste <span>cokoliv instalovali</span>",
       heroLead:"Xtally je odlehčený editor dokumentů přímo v prohlížeči. Životopis, faktura, smlouva nebo obyčejný dopis – s hotovými šablonami je hotovo za pár minut. Umí i otevřít a uložit soubory Wordu (.docx).",
       heroCtaStart:"Začít psát zdarma", heroCtaTemplates:"Prohlédnout šablony",
+      brandWord2:"Xtally Dokumenty", heroToggleMore:"O aplikaci a šablony", heroToggleLess:"Skrýt",
+      relaxLink:"Klidná chillout hudba k psaní ↗",
+      stepsToggleMore:"Zobrazit kroky", stepsToggleLess:"Skrýt kroky",
+      faqToggleMore:"Zobrazit dotazy", faqToggleLess:"Skrýt dotazy",
+      privacyToggleMore:"Zobrazit podrobnosti", privacyToggleLess:"Skrýt podrobnosti",
+      featuresToggleMore:"Zobrazit funkce", featuresToggleLess:"Skrýt funkce",
       chipOffline:"Funguje i offline", chipAutosave:"Automatické ukládání", chipWord:"Import a export Wordu (.docx)", chipResponsive:"Responzivní na mobilu i počítači",
       newDoc:"+ Nový", templatesBtn:"Šablony", backupBtn:"Zálohovat", backupBtnTitle:"Zálohovat všechny dokumenty", restoreBtn:"Obnovit", restoreBtnTitle:"Obnovit ze zálohy",
       myDocs:"Moje dokumenty", textStyle:"Styl textu", fontSize:"Velikost písma", fontFamily:"Typ písma",
@@ -795,6 +889,12 @@
       heroTitle:"Write a document without <span>installing anything</span>",
       heroLead:"Xtally is a lightweight document editor right in your browser. Resume, invoice, agreement or a plain letter — ready in minutes with built-in templates. It can also open and save Word (.docx) files.",
       heroCtaStart:"Start writing for free", heroCtaTemplates:"Browse templates",
+      brandWord2:"Xtally Documents", heroToggleMore:"About & templates", heroToggleLess:"Hide",
+      relaxLink:"Calm chillout music for writing ↗",
+      stepsToggleMore:"Show steps", stepsToggleLess:"Hide steps",
+      faqToggleMore:"Show questions", faqToggleLess:"Hide questions",
+      privacyToggleMore:"Show details", privacyToggleLess:"Hide details",
+      featuresToggleMore:"Show features", featuresToggleLess:"Hide features",
       chipOffline:"Works offline too", chipAutosave:"Autosave built in", chipWord:"Import & export Word (.docx)", chipResponsive:"Responsive on mobile and desktop",
       newDoc:"+ New", templatesBtn:"Templates", backupBtn:"Backup", backupBtnTitle:"Back up all documents", restoreBtn:"Restore", restoreBtnTitle:"Restore from backup",
       myDocs:"My documents", textStyle:"Text style", fontSize:"Font size", fontFamily:"Font family",
@@ -1175,6 +1275,23 @@
   try { savedCurrent = localStorage.getItem(CURRENT_KEY); } catch(e){}
   var startId = (savedCurrent && findDoc(savedCurrent)) ? savedCurrent : docs[0].id;
   applyI18n();
+  function setupCollapsible(detailsId, labelId, moreKey, lessKey){
+    var d = document.getElementById(detailsId);
+    var label = document.getElementById(labelId);
+    function update(){
+      if (!d || !label) return;
+      var key = d.open ? lessKey : moreKey;
+      label.setAttribute("data-i18n", key);
+      label.textContent = t(key);
+    }
+    if (d){ d.addEventListener("toggle", update); update(); }
+    return update;
+  }
+  var updateHeroToggleLabel = setupCollapsible("heroDetails", "heroToggleLabel", "heroToggleMore", "heroToggleLess");
+  var updateStepsToggleLabel = setupCollapsible("stepsDetails", "stepsToggleLabel", "stepsToggleMore", "stepsToggleLess");
+  var updateFaqToggleLabel = setupCollapsible("faqDetails", "faqToggleLabel", "faqToggleMore", "faqToggleLess");
+  var updatePrivacyToggleLabel = setupCollapsible("privacyDetails", "privacyToggleLabel", "privacyToggleMore", "privacyToggleLess");
+  var updateFeaturesToggleLabel = setupCollapsible("featuresDetails", "featuresToggleLabel", "featuresToggleMore", "featuresToggleLess");
   renderTemplateGrid();
   selectDoc(startId);
 
@@ -1184,6 +1301,11 @@
     currentLang = btn.dataset.lang;
     try { localStorage.setItem("xtally_lang", currentLang); } catch(e2){}
     applyI18n();
+    updateHeroToggleLabel();
+    updateStepsToggleLabel();
+    updateFaqToggleLabel();
+    updatePrivacyToggleLabel();
+    updateFeaturesToggleLabel();
     renderTemplateGrid();
     renderDocList();
     updateWordCount();

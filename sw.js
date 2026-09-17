@@ -1,5 +1,5 @@
 // Xtally service worker — cache-first app shell, offline support
-const CACHE_NAME = "xtally-cache-v8";
+const CACHE_NAME = "xtally-cache-v9";
 const APP_SHELL = [
   "./",
   "./index.html",
