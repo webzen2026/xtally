@@ -135,8 +135,9 @@
   .relax-link:hover{ color:var(--accent); }
   .relax-link svg{ width:15px; height:15px; flex-shrink:0; color:var(--accent); }
   .relax-link span{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .privacy-badge{ display:inline-flex; align-items:center; gap:8px; font-size:.82rem; font-weight:600; color:var(--success); background:color-mix(in srgb, var(--success) 12%, transparent); border:1px solid color-mix(in srgb, var(--success) 30%, transparent); padding:8px 16px; border-radius:999px; margin-bottom:18px; }
+  .privacy-badge{ display:inline-flex; align-items:center; gap:8px; font-size:.82rem; font-weight:600; color:var(--success); background:color-mix(in srgb, var(--success) 12%, transparent); border:1px solid color-mix(in srgb, var(--success) 30%, transparent); padding:8px 16px; border-radius:999px; margin-bottom:18px; max-width:100%; }
   .privacy-badge svg{ width:15px; height:15px; flex-shrink:0; }
+  .privacy-badge > span:not(svg){ min-width:0; }
   .hero h1{ font-size:clamp(1.9rem,4.4vw,3.1rem); line-height:1.1; margin:0 0 16px; letter-spacing:-.02em; }
   .hero h1 span{ background:linear-gradient(135deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .hero p.lead{ max-width:640px; margin:0 auto 28px; color:var(--ink-soft); font-size:1.05rem; }
@@ -233,7 +234,7 @@
   .option-row .txt h3{ margin:0 0 2px; font-size:.92rem; }
   .option-row .txt p{ margin:0; font-size:.78rem; color:var(--ink-soft); }
 
-  .section{ padding-block:64px; }
+  .section{ padding-block:10px; }
   .section h2{ font-size:clamp(1.4rem,2.6vw,1.9rem); margin:0 0 10px; text-align:center; }
   .section .sub{ text-align:center; color:var(--ink-soft); max-width:640px; margin:0 auto 36px; }
   .section-details summary{ list-style:none; cursor:pointer; }
@@ -262,7 +263,7 @@
 
   .faq{ max-width:760px; margin:0 auto; }
   .faq-item{ border-bottom:1px solid var(--line); padding:16px 0; }
-  .faq-item summary{ cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between; gap:10px; }
+  .faq-item summary{ cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between; align-items:flex-start; gap:10px; flex-wrap:wrap; }
   .faq-item summary::-webkit-details-marker{ display:none; }
   .faq-item summary:after{ content:"+"; color:var(--accent); font-size:1.2rem; }
   .faq-item[open] summary:after{ content:"–"; }
@@ -297,6 +298,19 @@
     .editor-scroll{ padding-inline:16px; }
     .statusbar{ padding-inline:16px; }
     .synth-link{ display:none; }
+    /* Zabrání automatickému přiblížení stránky na iOS při klepnutí do rozbalovacích
+       nabídek (Safari zooming, pokud má select font-size menší než 16px) */
+    .tsel{ font-size:16px; }
+    /* Sjednocené rozvržení rozbalovacích nabídek (Jak to funguje / Vše co potřebujete /
+       Soukromí / Časté dotazy) — nadpis vždy nahoře, tlačítko "Zobrazit" vždy pod ním,
+       ať je nadpis jakkoli dlouhý. */
+    .hero-summary-row, .section-summary-row{
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      gap:6px;
+    }
+    .section-summary-row h2{ width:100%; }
   }
   @media (max-width:520px){
     .toolbar .grp:nth-child(n+6){ order:1; }
