@@ -189,7 +189,7 @@
   .doc-title-input{ width:100%; max-width:760px; border:none; background:transparent; font-family:'Sora',sans-serif; font-size:1.3rem; font-weight:700; color:var(--ink); outline:none; }
   .doc-title-input::placeholder{ color:var(--ink-soft); }
 
-  .editor-scroll{ flex:1; overflow-y:auto; padding:8px 28px 32px; }
+  .editor-scroll{ flex:1; overflow-y:auto; overflow-x:auto; -webkit-overflow-scrolling:touch; padding:8px 28px 32px; }
   #editor{ min-height:420px; outline:none; font-size:1rem; color:var(--ink); background:var(--paper); padding:8px 2px 40px; max-width:760px; width:100%; margin:0 auto; }
   #editor h1{ font-size:1.6rem; margin:.6em 0 .3em; }
   #editor h2{ font-size:1.25rem; margin:.8em 0 .3em; }
@@ -300,6 +300,11 @@
     .editor-scroll{ padding-inline:16px; }
     .statusbar{ padding-inline:16px; }
     .synth-link{ display:none; }
+    /* Menší horní lišta na mobilu: jeden vodorovně scrollovatelný řádek
+       místo vlámání do několika řádků, aby dokument nebyl zbytečně
+       zatlačen dolů mimo obrazovku. */
+    .toolbar{ flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:thin; }
+    .toolbar .grp{ flex-shrink:0; }
     /* Zabrání automatickému přiblížení stránky na iOS při klepnutí do rozbalovacích
        nabídek (Safari zooming, pokud má select font-size menší než 16px) */
     .tsel{ font-size:16px; }
@@ -317,9 +322,6 @@
       gap:6px;
     }
     .section-summary-row h2{ width:100%; }
-  }
-  @media (max-width:520px){
-    .toolbar .grp:nth-child(n+6){ order:1; }
   }
 </style>
 </head>
