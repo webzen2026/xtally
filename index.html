@@ -694,6 +694,7 @@
     <p class="footer-note"><span data-i18n="footerNote">Xtally je součástí rodiny bezplatných webových nástrojů</span> <a href="https://synthlucida.com" target="_blank" rel="noopener">SYNTHLUCIDA</a>. © <span id="year"></span> Xtally <span data-i18n="brandWord">Dokumenty</span>.</p>
     <div class="footer-links">
       <a href="https://synthlucida.com" target="_blank" rel="noopener">SYNTHLUCIDA</a>
+      <a id="footerWebzenithLink" href="https://synthlucida.com/landing_webzenith.html" target="_blank" rel="noopener">WEBZENith</a>
       <a href="https://webzen2026.github.io/xtally-sheets/" target="_blank" rel="noopener" data-i18n="footerSheetsLink">Xtally Tabulky</a>
       <a href="#app" data-i18n="footerEditor">Editor</a>
       <a id="footerTemplatesLink" data-i18n="footerTemplates">Šablony</a>
@@ -1019,6 +1020,8 @@
     document.querySelectorAll("[data-i18n-placeholder]").forEach(function(el){ el.placeholder = t(el.getAttribute("data-i18n-placeholder")); });
     document.querySelectorAll("[data-i18n-dataplaceholder]").forEach(function(el){ el.setAttribute("data-placeholder", t(el.getAttribute("data-i18n-dataplaceholder"))); });
     document.querySelectorAll("#langSwitch button").forEach(function(b){ b.classList.toggle("active", b.dataset.lang === currentLang); });
+    var webzenithLink = document.getElementById("footerWebzenithLink");
+    if (webzenithLink) webzenithLink.href = currentLang === "en" ? "https://synthlucida.com/landing_webzenith-en.html" : "https://synthlucida.com/landing_webzenith.html";
   }
 
   /* ============ Templates (bilingual) ============ */
@@ -1685,7 +1688,36 @@
   window.addEventListener("appinstalled", function(){ installBtn.hidden = true; showToast(t("toastInstalled")); });
 
   if ("serviceWorker" in navigator){
-    window.addEventListener("load", function(){ navigator.serviceWorker.register("./sw.js").catch(function(){}); });
+    window.addEventListener("load", function(){
+      /* Pokud stránku při načtení už řídí service worker, jde o další (ne úplně
+         první) návštěvu appky — jen v tom případě má smysl automaticky obnovit
+         stránku při zjištění nové verze. Při úplně první instalaci by "obnovení"
+         nemělo být potřeba a zbytečně by stránku hned po načtení znovu nahrálo. */
+      var hadController = !!navigator.serviceWorker.controller;
+
+      navigator.serviceWorker.register("./sw.js").then(function(reg){
+        /* Aktivně zkontrolovat novou verzi hned při načtení, pak jednou za hodinu
+           a vždy, když se uživatel vrátí na tuto kartu. */
+        function checkForUpdate(){ reg.update().catch(function(){}); }
+        checkForUpdate();
+        setInterval(checkForUpdate, 60 * 60 * 1000);
+        document.addEventListener("visibilitychange", function(){
+          if (document.visibilityState === "visible") checkForUpdate();
+        });
+      }).catch(function(){});
+
+      /* Jakmile nový service worker převezme kontrolu (skipWaiting + clients.claim
+         v sw.js), stránku automaticky obnovíme, aby se načetla nejnovější verze appky
+         bez nutnosti ručního refreshe. */
+      if (hadController){
+        var swRefreshing = false;
+        navigator.serviceWorker.addEventListener("controllerchange", function(){
+          if (swRefreshing) return;
+          swRefreshing = true;
+          window.location.reload();
+        });
+      }
+    });
   }
 
   document.getElementById("year").textContent = new Date().getFullYear();
