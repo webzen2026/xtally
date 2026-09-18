@@ -303,6 +303,10 @@
     /* Zabrání automatickému přiblížení stránky na iOS při klepnutí do rozbalovacích
        nabídek (Safari zooming, pokud má select font-size menší než 16px) */
     .tsel{ font-size:16px; }
+    /* Větší dotykové plochy tlačítek na mobilu (blíž doporučeným ~44x44px) */
+    .tbtn{ width:40px; height:40px; }
+    .tbtn svg{ width:18px; height:18px; }
+    .icon-btn{ width:42px; height:42px; }
     /* Sjednocené rozvržení rozbalovacích nabídek (Jak to funguje / Vše co potřebujete /
        Soukromí / Časté dotazy) — nadpis vždy nahoře, tlačítko "Zobrazit" vždy pod ním,
        ať je nadpis jakkoli dlouhý. */
@@ -334,7 +338,7 @@
         <button type="button" data-lang="cs">CS</button>
         <button type="button" data-lang="en">EN</button>
       </div>
-      <button class="icon-btn" id="themeToggle" type="button" data-i18n-title="themeToggle" title="Přepnout vzhled">
+      <button class="icon-btn" id="themeToggle" type="button" data-i18n-title="themeToggle" data-i18n-aria="themeToggle" title="Přepnout vzhled" aria-label="Přepnout vzhled"
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/></svg>
       </button>
       <button class="btn btn-primary btn-sm" id="installBtn" type="button" hidden>
@@ -405,18 +409,18 @@
     <div class="editor-col">
       <div class="toolbar" role="toolbar" aria-label="Formátování textu">
         <div class="grp">
-          <button class="tbtn mobile-only" id="sidebarToggle" type="button" data-i18n-title="myDocs" title="Moje dokumenty">
+          <button class="tbtn mobile-only" id="sidebarToggle" type="button" data-i18n-title="myDocs" data-i18n-aria="myDocs" title="Moje dokumenty" aria-label="Moje dokumenty"
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
         </div>
         <div class="grp">
-          <select class="tsel" id="blockSelect" data-i18n-title="textStyle" title="Styl textu">
+          <select class="tsel" id="blockSelect" data-i18n-title="textStyle" data-i18n-aria="textStyle" title="Styl textu" aria-label="Styl textu"
             <option value="P" data-i18n="blockNormal">Normální text</option>
             <option value="H1" data-i18n="blockH1">Nadpis 1</option>
             <option value="H2" data-i18n="blockH2">Nadpis 2</option>
             <option value="H3" data-i18n="blockH3">Nadpis 3</option>
           </select>
-          <select class="tsel" id="fontSizeSelect" data-i18n-title="fontSize" title="Velikost písma">
+          <select class="tsel" id="fontSizeSelect" data-i18n-title="fontSize" data-i18n-aria="fontSize" title="Velikost písma" aria-label="Velikost písma"
             <option value="10">10</option>
             <option value="12">12</option>
             <option value="14">14</option>
@@ -430,7 +434,7 @@
             <option value="56">56</option>
             <option value="72">72</option>
           </select>
-          <select class="tsel" id="fontFamilySelect" data-i18n-title="fontFamily" title="Typ písma">
+          <select class="tsel" id="fontFamilySelect" data-i18n-title="fontFamily" data-i18n-aria="fontFamily" title="Typ písma" aria-label="Typ písma"
             <option value="Inter, system-ui, sans-serif" data-i18n="fontDefault">Výchozí</option>
             <option value="Arial, Helvetica, sans-serif">Arial</option>
             <option value="'Times New Roman', Times, serif">Times New Roman</option>
@@ -447,67 +451,67 @@
           </select>
         </div>
         <div class="grp">
-          <button class="tbtn" data-cmd="bold" data-i18n-title="bold" title="Tučně (Ctrl+B)">
+          <button class="tbtn" data-cmd="bold" data-i18n-title="bold" data-i18n-aria="bold" title="Tučně (Ctrl+B)" aria-label="Tučně (Ctrl+B)">
             <svg viewBox="0 0 24 24" fill="none"><path d="M7 5h6.5a3.5 3.5 0 010 7H7V5zM7 12h7a3.5 3.5 0 010 7H7v-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
           </button>
-          <button class="tbtn" data-cmd="italic" data-i18n-title="italic" title="Kurzíva (Ctrl+I)">
+          <button class="tbtn" data-cmd="italic" data-i18n-title="italic" data-i18n-aria="italic" title="Kurzíva (Ctrl+I)" aria-label="Kurzíva (Ctrl+I)">
             <svg viewBox="0 0 24 24" fill="none"><path d="M11 5h6M7 19h6M14 5L10 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
-          <button class="tbtn" data-cmd="underline" data-i18n-title="underline" title="Podtržené (Ctrl+U)">
+          <button class="tbtn" data-cmd="underline" data-i18n-title="underline" data-i18n-aria="underline" title="Podtržené (Ctrl+U)" aria-label="Podtržené (Ctrl+U)">
             <svg viewBox="0 0 24 24" fill="none"><path d="M6 4v7a6 6 0 0012 0V4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
-          <button class="tbtn" data-cmd="strikeThrough" data-i18n-title="strike" title="Přeškrtnuté">
+          <button class="tbtn" data-cmd="strikeThrough" data-i18n-title="strike" data-i18n-aria="strike" title="Přeškrtnuté" aria-label="Přeškrtnuté">
             <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M8 6.5c1-1 2.3-1.5 4-1.5 2.8 0 4.5 1.3 4.5 3.2 0 1-.5 1.8-1.5 2.3M8.5 15c-.3.5-.5 1-.5 1.7 0 1.9 1.9 3.3 4.5 3.3 2 0 3.4-.6 4.2-1.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </button>
         </div>
         <div class="grp">
-          <button class="tbtn" data-cmd="insertUnorderedList" data-i18n-title="bullets" title="Odrážky">
+          <button class="tbtn" data-cmd="insertUnorderedList" data-i18n-title="bullets" data-i18n-aria="bullets" title="Odrážky" aria-label="Odrážky">
             <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="6" r="1.4" fill="currentColor"/><circle cx="5" cy="12" r="1.4" fill="currentColor"/><circle cx="5" cy="18" r="1.4" fill="currentColor"/><path d="M9 6h11M9 12h11M9 18h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
-          <button class="tbtn" data-cmd="insertOrderedList" data-i18n-title="numbered" title="Číslovaný seznam">
+          <button class="tbtn" data-cmd="insertOrderedList" data-i18n-title="numbered" data-i18n-aria="numbered" title="Číslovaný seznam" aria-label="Číslovaný seznam"
             <svg viewBox="0 0 24 24" fill="none"><path d="M9 6h11M9 12h11M9 18h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><text x="2" y="8" font-size="6" fill="currentColor">1</text><text x="2" y="14" font-size="6" fill="currentColor">2</text><text x="2" y="20" font-size="6" fill="currentColor">3</text></svg>
           </button>
         </div>
         <div class="grp">
-          <button class="tbtn" data-cmd="justifyLeft" data-i18n-title="alignLeft" title="Zarovnat vlevo">
+          <button class="tbtn" data-cmd="justifyLeft" data-i18n-title="alignLeft" data-i18n-aria="alignLeft" title="Zarovnat vlevo" aria-label="Zarovnat vlevo">
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
-          <button class="tbtn" data-cmd="justifyCenter" data-i18n-title="alignCenter" title="Zarovnat na střed">
+          <button class="tbtn" data-cmd="justifyCenter" data-i18n-title="alignCenter" data-i18n-aria="alignCenter" title="Zarovnat na střed" aria-label="Zarovnat na střed">
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M7 12h10M5 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
-          <button class="tbtn" data-cmd="justifyRight" data-i18n-title="alignRight" title="Zarovnat vpravo">
+          <button class="tbtn" data-cmd="justifyRight" data-i18n-title="alignRight" data-i18n-aria="alignRight" title="Zarovnat vpravo" aria-label="Zarovnat vpravo">
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M10 12h10M6 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
-          <button class="tbtn" data-cmd="justifyFull" data-i18n-title="alignJustify" title="Zarovnat do bloku">
+          <button class="tbtn" data-cmd="justifyFull" data-i18n-title="alignJustify" data-i18n-aria="alignJustify" title="Zarovnat do bloku" aria-label="Zarovnat do bloku"
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
         </div>
         <div class="grp">
-          <input class="tcolor" type="color" id="colorPicker" value="#4f46e5" data-i18n-title="textColor" title="Barva textu">
-          <input class="tcolor" type="color" id="highlightPicker" value="#fef08a" data-i18n-title="highlightColor" title="Zvýraznění textu">
-          <button class="tbtn" id="linkBtn" type="button" data-i18n-title="insertLink" title="Vložit odkaz">
+          <input class="tcolor" type="color" id="colorPicker" value="#4f46e5" data-i18n-title="textColor" data-i18n-aria="textColor" title="Barva textu" aria-label="Barva textu">
+          <input class="tcolor" type="color" id="highlightPicker" value="#fef08a" data-i18n-title="highlightColor" data-i18n-aria="highlightColor" title="Zvýraznění textu" aria-label="Zvýraznění textu">
+          <button class="tbtn" id="linkBtn" type="button" data-i18n-title="insertLink" data-i18n-aria="insertLink" title="Vložit odkaz" aria-label="Vložit odkaz">
             <svg viewBox="0 0 24 24" fill="none"><path d="M9 15l6-6M10 7l1.2-1.2a3.5 3.5 0 115 5L15 12M14 17l-1.2 1.2a3.5 3.5 0 11-5-5L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
-          <button class="tbtn" id="imageBtn" type="button" data-i18n-title="insertImage" title="Vložit obrázek">
+          <button class="tbtn" id="imageBtn" type="button" data-i18n-title="insertImage" data-i18n-aria="insertImage" title="Vložit obrázek" aria-label="Vložit obrázek">
             <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="10" r="1.5" fill="currentColor"/><path d="M5 16l4.5-4.5a1.5 1.5 0 012.1 0L15 15m1-2l1.3-1.3a1.5 1.5 0 012.1 0L21 13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <button class="tbtn" data-cmd="removeFormat" data-i18n-title="clearFormat" title="Vymazat formátování">
+          <button class="tbtn" data-cmd="removeFormat" data-i18n-title="clearFormat" data-i18n-aria="clearFormat" title="Vymazat formátování" aria-label="Vymazat formátování"
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 4l16 16M11 5h8M9.5 5L7 19h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </button>
         </div>
         <div class="grp">
-          <button class="tbtn" data-cmd="undo" data-i18n-title="undo" title="Zpět (Ctrl+Z)">
+          <button class="tbtn" data-cmd="undo" data-i18n-title="undo" data-i18n-aria="undo" title="Zpět (Ctrl+Z)" aria-label="Zpět (Ctrl+Z)">
             <svg viewBox="0 0 24 24" fill="none"><path d="M9 7L4 12l5 5M4 12h10a6 6 0 010 12h-1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <button class="tbtn" data-cmd="redo" data-i18n-title="redo" title="Vpřed (Ctrl+Y)">
+          <button class="tbtn" data-cmd="redo" data-i18n-title="redo" data-i18n-aria="redo" title="Vpřed (Ctrl+Y)" aria-label="Vpřed (Ctrl+Y)"
             <svg viewBox="0 0 24 24" fill="none"><path d="M15 7l5 5-5 5M20 12H10a6 6 0 000 12h1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
         <div class="grp">
-          <button class="tbtn" id="printToolbarBtn" type="button" data-i18n-title="printTooltip" title="Tisk / PDF">
+          <button class="tbtn" id="printToolbarBtn" type="button" data-i18n-title="printTooltip" data-i18n-aria="printTooltip" title="Tisk / PDF" aria-label="Tisk / PDF">
             <svg viewBox="0 0 24 24" fill="none"><path d="M6 9V3h12v6M6 18H4a1 1 0 01-1-1v-5a1 1 0 011-1h16a1 1 0 011 1v5a1 1 0 01-1 1h-2M6 14h12v7H6v-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
           </button>
-          <button class="tbtn" id="focusModeBtn" type="button" data-i18n-title="focusMode" title="Celá obrazovka">
+          <button class="tbtn" id="focusModeBtn" type="button" data-i18n-title="focusMode" data-i18n-aria="focusMode" title="Celá obrazovka" aria-label="Celá obrazovka"
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
@@ -1009,6 +1013,7 @@
     document.querySelectorAll("[data-i18n]").forEach(function(el){ el.textContent = t(el.getAttribute("data-i18n")); });
     document.querySelectorAll("[data-i18n-html]").forEach(function(el){ el.innerHTML = t(el.getAttribute("data-i18n-html")); });
     document.querySelectorAll("[data-i18n-title]").forEach(function(el){ el.title = t(el.getAttribute("data-i18n-title")); });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function(el){ el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria"))); });
     document.querySelectorAll("[data-i18n-placeholder]").forEach(function(el){ el.placeholder = t(el.getAttribute("data-i18n-placeholder")); });
     document.querySelectorAll("[data-i18n-dataplaceholder]").forEach(function(el){ el.setAttribute("data-placeholder", t(el.getAttribute("data-i18n-dataplaceholder"))); });
     document.querySelectorAll("#langSwitch button").forEach(function(b){ b.classList.toggle("active", b.dataset.lang === currentLang); });
