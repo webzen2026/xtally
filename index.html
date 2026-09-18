@@ -59,7 +59,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=Roboto:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -182,6 +182,7 @@
   .tbtn:hover{ background:color-mix(in srgb, var(--accent) 12%, transparent); color:var(--accent); }
   .tbtn.active{ background:color-mix(in srgb, var(--accent) 18%, transparent); color:var(--accent); }
   .tsel{ height:32px; border-radius:8px; border:1px solid var(--line); background:var(--bg-soft); color:var(--ink); font-size:.82rem; padding-inline:6px; cursor:pointer; font-family:inherit; }
+  #blockSelect, #fontFamilySelect{ max-width:112px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .tcolor{ width:32px; height:32px; padding:2px; border-radius:8px; border:1px solid var(--line); background:var(--bg-soft); cursor:pointer; }
 
   .doc-title-row{ padding:16px 28px 0; display:flex; justify-content:center; }
@@ -198,6 +199,7 @@
   #editor table{ border-collapse:collapse; margin:.6em 0; }
   #editor td, #editor th{ border:1px solid var(--line); padding:6px 10px; }
   #editor a{ color:var(--accent); }
+  #editor img{ max-width:100%; height:auto; border-radius:8px; margin:.4em 0; display:block; }
   #editor:empty:before{ content:attr(data-placeholder); color:var(--ink-soft); pointer-events:none; }
 
   .statusbar{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 28px; border-top:1px solid var(--line); font-size:.78rem; color:var(--ink-soft); background:var(--bg-soft); flex-wrap:wrap; }
@@ -437,6 +439,11 @@
             <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
             <option value="'Courier New', Courier, monospace">Courier New</option>
             <option value="'Comic Sans MS', 'Comic Sans', cursive">Comic Sans MS</option>
+            <option value="'Roboto', Arial, sans-serif">Roboto</option>
+            <option value="'Merriweather', Georgia, serif">Merriweather</option>
+            <option value="'Lora', Georgia, serif">Lora</option>
+            <option value="'Poppins', Arial, sans-serif">Poppins</option>
+            <option value="'JetBrains Mono', 'Courier New', monospace">JetBrains Mono</option>
           </select>
         </div>
         <div class="grp">
@@ -480,6 +487,9 @@
           <input class="tcolor" type="color" id="highlightPicker" value="#fef08a" data-i18n-title="highlightColor" title="Zvýraznění textu">
           <button class="tbtn" id="linkBtn" type="button" data-i18n-title="insertLink" title="Vložit odkaz">
             <svg viewBox="0 0 24 24" fill="none"><path d="M9 15l6-6M10 7l1.2-1.2a3.5 3.5 0 115 5L15 12M14 17l-1.2 1.2a3.5 3.5 0 11-5-5L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button class="tbtn" id="imageBtn" type="button" data-i18n-title="insertImage" title="Vložit obrázek">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="10" r="1.5" fill="currentColor"/><path d="M5 16l4.5-4.5a1.5 1.5 0 012.1 0L15 15m1-2l1.3-1.3a1.5 1.5 0 012.1 0L21 13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <button class="tbtn" data-cmd="removeFormat" data-i18n-title="clearFormat" title="Vymazat formátování">
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 4l16 16M11 5h8M9.5 5L7 19h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -804,6 +814,7 @@
 <input type="file" id="importDocxInput" accept=".docx" hidden>
 <input type="file" id="importTxtInput" accept=".txt,text/plain" hidden>
 <input type="file" id="restoreJsonInput" accept=".json,application/json" hidden>
+<input type="file" id="insertImageInput" accept="image/*" hidden>
 
 <div class="toast" id="toast"></div>
 
@@ -839,7 +850,7 @@
       bold:"Tučně (Ctrl+B)", italic:"Kurzíva (Ctrl+I)", underline:"Podtržené (Ctrl+U)", strike:"Přeškrtnuté",
       bullets:"Odrážky", numbered:"Číslovaný seznam",
       alignLeft:"Zarovnat vlevo", alignCenter:"Zarovnat na střed", alignRight:"Zarovnat vpravo", alignJustify:"Zarovnat do bloku",
-      textColor:"Barva textu", highlightColor:"Zvýraznění textu", insertLink:"Vložit odkaz", clearFormat:"Vymazat formátování",
+      textColor:"Barva textu", highlightColor:"Zvýraznění textu", insertLink:"Vložit odkaz", insertImage:"Vložit obrázek", clearFormat:"Vymazat formátování",
       undo:"Zpět (Ctrl+Z)", redo:"Vpřed (Ctrl+Y)", printTooltip:"Tisk / PDF", focusMode:"Celá obrazovka (jen editor)",
       supportLink:"Líbí se ti appka? Podpoř kávou ☕",
       docTitlePlaceholder:"Název dokumentu", editorPlaceholder:"Začněte psát, nebo vyberte šablonu vlevo…",
@@ -894,6 +905,7 @@
       toastBackupSaved:"Záloha stažena", toastDocxImported:"Word dokument importován", toastTxtImported:"Textový soubor importován",
       toastRestoreOk:"Záloha obnovena", toastRestoreBad:"Soubor zálohy se nepodařilo přečíst", toastDocxImportBad:"Soubor .docx se nepodařilo přečíst – zkuste jiný soubor",
       toastLibLoading:"Knihovna se ještě načítá, zkuste to prosím za pár vteřin znovu",
+      toastImageBad:"Soubor se nepodařilo vložit jako obrázek", toastImageTooBig:"Obrázek je příliš velký (max. 5 MB)",
       wordsZero:"0 slov", word1:" slovo", word234:" slova", word5:" slov"
     },
     en: {
@@ -918,7 +930,7 @@
       bold:"Bold (Ctrl+B)", italic:"Italic (Ctrl+I)", underline:"Underline (Ctrl+U)", strike:"Strikethrough",
       bullets:"Bulleted list", numbered:"Numbered list",
       alignLeft:"Align left", alignCenter:"Align center", alignRight:"Align right", alignJustify:"Justify",
-      textColor:"Text color", highlightColor:"Highlight color", insertLink:"Insert link", clearFormat:"Clear formatting",
+      textColor:"Text color", highlightColor:"Highlight color", insertLink:"Insert link", insertImage:"Insert image", clearFormat:"Clear formatting",
       undo:"Undo (Ctrl+Z)", redo:"Redo (Ctrl+Y)", printTooltip:"Print / PDF", focusMode:"Fullscreen (editor only)",
       supportLink:"Enjoying the app? Support with a coffee ☕",
       docTitlePlaceholder:"Document title", editorPlaceholder:"Start typing, or pick a template on the left…",
@@ -973,6 +985,7 @@
       toastBackupSaved:"Backup downloaded", toastDocxImported:"Word document imported", toastTxtImported:"Text file imported",
       toastRestoreOk:"Backup restored", toastRestoreBad:"Couldn't read the backup file", toastDocxImportBad:"Couldn't read the .docx file — try a different file",
       toastLibLoading:"The library is still loading, please try again in a few seconds",
+      toastImageBad:"Couldn't insert that file as an image", toastImageTooBig:"Image is too large (max 5 MB)",
       wordsZero:"0 words", word1:" word", word234:" words", word5:" words"
     }
   };
@@ -1395,6 +1408,40 @@
     if (savedRange){ var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(savedRange); }
     try { document.execCommand("createLink", false, url); } catch(e){}
     scheduleSave(); closeModal(linkModal);
+  });
+
+  /* ============ Insert image ============ */
+  var insertImageInput = document.getElementById("insertImageInput");
+  var savedImageRange = null;
+  var MAX_IMAGE_BYTES = 5 * 1024 * 1024;
+  document.getElementById("imageBtn").addEventListener("click", function(){
+    var sel = window.getSelection();
+    savedImageRange = (sel && sel.rangeCount > 0 && editor.contains(sel.anchorNode)) ? sel.getRangeAt(0).cloneRange() : null;
+    insertImageInput.value = "";
+    insertImageInput.click();
+  });
+  insertImageInput.addEventListener("change", function(){
+    var file = this.files && this.files[0];
+    if (!file) return;
+    if (!/^image\//.test(file.type)){ showToast(t("toastImageBad")); return; }
+    if (file.size > MAX_IMAGE_BYTES){ showToast(t("toastImageTooBig")); return; }
+    var reader = new FileReader();
+    reader.onload = function(){
+      editor.focus();
+      var sel = window.getSelection();
+      if (savedImageRange){
+        sel.removeAllRanges(); sel.addRange(savedImageRange);
+      } else if (!sel.rangeCount || !editor.contains(sel.anchorNode)){
+        var r = document.createRange(); r.selectNodeContents(editor); r.collapse(false);
+        sel.removeAllRanges(); sel.addRange(r);
+      }
+      try { document.execCommand("insertImage", false, String(reader.result || "")); } catch(e){}
+      var imgs = editor.querySelectorAll("img:not([alt])");
+      if (imgs.length) imgs[imgs.length - 1].setAttribute("alt", file.name.replace(/\.[^.]+$/, ""));
+      scheduleSave(); updateWordCount();
+    };
+    reader.onerror = function(){ showToast(t("toastImageBad")); };
+    reader.readAsDataURL(file);
   });
 
   /* ============ Templates modal open ============ */
